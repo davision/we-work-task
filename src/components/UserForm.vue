@@ -17,7 +17,7 @@ const user = reactive({
 const { errors } = useFormValidation();
 const { isSubmitDisabled } = useSubmitState(user, errors);
 
-const { data, error, loading, postData } = useFetch("https://google.com", user);
+const { data, error, loading, postData } = useFetch("https://httpbin.org/post", user);
 </script>
 
 <template>
@@ -35,9 +35,9 @@ const { data, error, loading, postData } = useFetch("https://google.com", user);
     >
       Submit form
     </button>
-    {{ data }}
     <div v-if="data" class="alert alert-success mt-3" role="alert">
-      Form successfully sent
+      <h4>Form successfully sent with a response:</h4>
+      <pre>{{ data.json }}</pre>
     </div>
     <div v-if="error" class="alert alert-danger mt-3" role="alert">
       {{ error }}
