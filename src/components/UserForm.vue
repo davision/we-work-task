@@ -7,17 +7,22 @@ import { useSubmitState } from "@/composables/useSubmitState";
 import UsernameField from "@/components/UsernameField.vue";
 import CountryField from "@/components/CountryField.vue";
 import TaxField from "@/components/TaxField.vue";
+import ShoeSize from "@/components/ShoeSize.vue";
 
 const user = reactive({
   username: "",
   country: "",
   taxIdentifier: "",
+  shoeSize: "",
 });
 
 const { errors } = useFormValidation();
 const { isSubmitDisabled } = useSubmitState(user, errors);
 
-const { data, error, loading, postData } = useFetch("https://httpbin.org/post", user);
+const { data, error, loading, postData } = useFetch(
+  "https://httpbin.org/post",
+  user
+);
 </script>
 
 <template>
@@ -25,6 +30,7 @@ const { data, error, loading, postData } = useFetch("https://httpbin.org/post", 
     <UsernameField v-model="user.username" />
     <CountryField v-model="user.country" />
     <TaxField v-model="user.taxIdentifier" />
+    <ShoeSize v-model="user.shoeSize" />
 
     <button
       type="button"

@@ -5,7 +5,7 @@ import UserForm from "@/components/UserForm.vue";
 <template>
   <div class="container py-4 px-3 mx-auto">
     <div class="row">
-      <div class="col-5">
+      <div class="col-12 col-lg-5">
         <h1>User form</h1>
         <UserForm />
       </div>

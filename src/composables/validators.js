@@ -9,6 +9,12 @@ export default function useValidators() {
       : "";
   };
 
+  const maxLength = (fieldName, fieldValue, max) => {
+    return fieldValue.length >= max
+      ? `The ${fieldName} field must be maximum ${max} characters long`
+      : "";
+  };
+
   // Check if fieldValue exists in array of values
   const isIn = (fieldName, fieldValue, values) => {
     return !values.includes(fieldValue)
@@ -32,5 +38,5 @@ export default function useValidators() {
       : "";
   };
 
-  return { isEmpty, minLength, isIn, isUsaTaxId, isCanadaTaxId };
+  return { isEmpty, minLength, isIn, isUsaTaxId, isCanadaTaxId, maxLength };
 }

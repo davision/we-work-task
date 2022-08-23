@@ -2,7 +2,9 @@ import useValidators from "@/composables/validators";
 
 import { reactive, ref } from "vue";
 
-const { isEmpty, minLength, isIn, isUsaTaxId, isCanadaTaxId } = useValidators();
+const { isEmpty, minLength, isIn, isUsaTaxId, isCanadaTaxId, maxLength } =
+  useValidators();
+
 const errors = reactive({});
 const selectedCountry = ref("");
 
@@ -10,7 +12,12 @@ export function useFormValidation() {
   const validateNameField = (fieldName, fieldValue) => {
     errors[fieldName] = !fieldValue
       ? isEmpty(fieldName, fieldValue)
-      : minLength(fieldName, fieldValue, 3);
+      : minLength(fieldName, fieldValue, 3) ||
+        maxLength(fieldName, fieldValue, 20);
+  };
+
+  const validateShoeField = (fieldName, fieldValue) => {
+    errors[fieldName] = !fieldValue ? isEmpty(fieldName, fieldValue) : "";
   };
 
   // Validate valid country field
@@ -32,5 +39,6 @@ export function useFormValidation() {
     validateNameField,
     validateCountryField,
     validateTaxIdField,
+    validateShoeField,
   };
 }
